@@ -1,0 +1,16 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:"es-es" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+    <head>
+        <title>Smart Build</title>
+    </head>
+    <body>
+		<p>Hello Smart Builds</p>
+		{% if form %}
+			{{form}}
+		{% endif %}
+		{% block content %}{% endblock %}
+    </body>
+    {% block scripts %}
+    {% endblock %}
+</html>

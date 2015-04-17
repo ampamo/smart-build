@@ -13,6 +13,15 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
+#***************Get enviroment variable*****************************
+def get_env_variable(var_name):
+    try:
+        return os.environ.get(var_name)
+    except KeyError:
+        error_msg = "Set the %s enviroment variable" % var_name
+        raise ImproperlyConfigured(error_msg)
+#******************************************************************
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -37,6 +46,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
     'places',
     'builds',
     'modules',
@@ -59,7 +69,9 @@ ROOT_URLCONF = 'SmartBuild.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            'templates/'
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -73,17 +85,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'SmartBuild.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 
 
 # Internationalization

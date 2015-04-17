@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+	{% if indications %}
+		<p>Indicaciones para llegar desde {{from_module.name}} hasta {{to_module.name}}</p>
+		<ul>
+			{% for indication in indications %}
+				<li>{{indication.description}}</li>
+			{% endfor %}
+		</ul>
+	{% endif %}
+{% endblock %}
