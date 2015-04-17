@@ -7,6 +7,7 @@ urlpatterns = [
 	url(r'^$', home, name='home'),
     url(r'^admin/',  include(admin.site.urls)),
     url(r'^places/', include('places.urls')),
+    url(r'^modules/', include('modules.urls')),
 ]
 
 if settings.DEBUG : # solo para desarrollo sirvo los archivos estaticos a traves del servidor de django

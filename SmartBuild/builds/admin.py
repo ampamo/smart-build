@@ -6,7 +6,7 @@ class BuildAdmin(admin.ModelAdmin):
 	list_display = ('id', 'name', )
 
 class FloorAdmin(admin.ModelAdmin):
-	list_display = ('id', 'order', )
+	list_display = ('id', 'order', 'build', )
 
 admin.site.register(Build, BuildAdmin)
 admin.site.register(Floor, FloorAdmin)

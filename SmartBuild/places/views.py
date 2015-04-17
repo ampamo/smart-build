@@ -1,13 +1,14 @@
+# -*- encoding: utf-8 -*-
 from django.shortcuts import render
 from modules.forms    import ModuleFilterForm
 
 # Create your views here.
 
 def home(request):
-	form        = ModuleFilterForm(request.POST or None)
+	module_filter_form = ModuleFilterForm(request.POST or None)
 
 	return render(request, 'index.html', {
-		'form' : form
+		'module_filter_form' : module_filter_form
 	})
 
 

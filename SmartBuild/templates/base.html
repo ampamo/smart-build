@@ -6,9 +6,13 @@
     </head>
     <body>
 		<p>Hello Smart Builds</p>
-		{% if form %}
-			{{form}}
-		{% endif %}
+		<form id="searchModule" action="{% url 'module_list' %}" method="GET">
+			{% csrf_token %}
+			{{module_filter_form}}
+			<button type="submit"  id="searchModuleButton" class="btn btn-success">
+				<i class="fa fa-save"></i> Buscar
+			</button>
+		</form>
 		{% block content %}{% endblock %}
     </body>
     {% block scripts %}

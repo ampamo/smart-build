@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from django.db      import models
 from modules.models import Module
 
@@ -32,6 +33,9 @@ class Indication(models.Model):
 
 
 	description = models.CharField(max_length=140)
+
+	def __unicode__(self):
+		return u'Desde ' + self.from_module.name + u' hasta ' + self.to_module.name
 
 
 class ToModuleIndication(models.Model):
