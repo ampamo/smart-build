@@ -5,9 +5,10 @@ from django.conf      import settings
 
 urlpatterns = [
 	url(r'^$', home, name='home'),
-    url(r'^admin/',  include(admin.site.urls)),
-    url(r'^places/', include('places.urls')),
-    url(r'^modules/', include('modules.urls')),
+    url(r'^admin/',       include(admin.site.urls)),
+    url(r'^places/',      include('places.urls')),
+    url(r'^modules/',     include('modules.urls')),
+    url(r'^indications/', include('indications.urls')),
 ]
 
 if settings.DEBUG : # solo para desarrollo sirvo los archivos estaticos a traves del servidor de django

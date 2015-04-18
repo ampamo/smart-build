@@ -27,24 +27,29 @@ class IndicationType(models.Model):
 
 class Indication(models.Model):
 	kind           = models.ForeignKey(IndicationType, on_delete=models.PROTECT)
-	from_module    = models.ManyToManyField(Module, through="FromModuleIndication", related_name='from_module')
-	to_module      = models.ManyToManyField(Module, through="ToModuleIndication",   related_name='to_module')
 	without_stairs = models.BooleanField(default=True)
 
-
-	description = models.CharField(max_length=140)
+	description    = models.TextField()
 
 	def __unicode__(self):
-		return u'Desde ' + self.from_module.name + u' hasta ' + self.to_module.name
+		return self.description
 
 
-class ToModuleIndication(models.Model):
-	module     = models.ForeignKey(Module, on_delete=models.PROTECT, )
+class Route(models.Model):
+	from_module = models.ForeignKey(Module, on_delete=models.PROTECT, related_name='from_route')
+	to_module   = models.ForeignKey(Module, on_delete=models.PROTECT, related_name='to_route')
+	image       = models.ImageField(blank=True, upload_to='indications')
+	map_image   = models.ImageField(blank=True, upload_to='indications')
+
+	def __unicode__(self):
+		return self.from_module.name + u'-->' + self.to_module.name
+
+
+class RouteStep(models.Model):
+	route      = models.ForeignKey(Route, on_delete=models.PROTECT)
 	indication = models.ForeignKey(Indication, on_delete=models.PROTECT)
 	order      = models.PositiveIntegerField()
 
+	def __unicode__(self):
+		return unicode(self.order) + u'. ' + unicode(self.route)
 
-class FromModuleIndication(models.Model):
-	module     = models.ForeignKey(Module, on_delete=models.PROTECT, )
-	indication = models.ForeignKey(Indication, on_delete=models.PROTECT)
-	order      = models.PositiveIntegerField()

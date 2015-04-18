@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models        import IndicationType, Indication, ToModuleIndication, FromModuleIndication
+from .models        import IndicationType, Indication, Route, RouteStep
 # Register your models here.
 
 class IndicationTypeAdmin(admin.ModelAdmin):
@@ -10,15 +10,15 @@ class IndicationAdmin(admin.ModelAdmin):
 	list_display = ('id', 'description', )
 
 
-class ToModuleIndicationAdmin(admin.ModelAdmin):
-	list_display = ('id', 'module', 'indication', 'order', )
+class RouteAdmin(admin.ModelAdmin):
+	list_display = ('id', 'from_module', 'to_module', )
 
 
-class FromModuleIndicationAdmin(admin.ModelAdmin):
-	list_display = ('id', 'module', 'indication', 'order', )
+class RouteStepAdmin(admin.ModelAdmin):
+	list_display = ('id', 'route', 'indication', 'order', )
 
 
 admin.site.register(IndicationType, IndicationTypeAdmin)
 admin.site.register(Indication, IndicationAdmin)
-admin.site.register(FromModuleIndication, FromModuleIndicationAdmin)
-admin.site.register(ToModuleIndication, ToModuleIndicationAdmin)
+admin.site.register(Route, RouteAdmin)
+admin.site.register(RouteStep, RouteStepAdmin)

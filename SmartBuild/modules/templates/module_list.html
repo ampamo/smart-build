@@ -5,7 +5,7 @@
 		<p>Seleccione uno de los siguientes lugares:</p>
 		<ul>
 			{% for module in modules %}
-				<li>{{module.name}}</li>
+				<li><a href="{% url 'routestep_list' from_module_pk=from_module.pk from_slug=from_module.name|slugify to_module_pk=module.pk to_slug=module.name|slugify %}">{{module.name}}</a></li>
 			{% endfor %}
 		</ul>
 	{% endif %}

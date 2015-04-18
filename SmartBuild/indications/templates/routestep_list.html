@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+	{% if routesteps %}
+		<p>Indicaciones para llegar desde {{route.from_module.name}} hasta {{route.to_module.name}}</p>
+		<ol>
+			{% for routestep in routesteps %}
+				<li>{{routestep.indication.description}}</li>
+			{% endfor %}
+		</ol>
+	{% endif %}
+{% endblock %}
