@@ -42,7 +42,7 @@ class Route(models.Model):
 	map_image   = models.ImageField(blank=True, upload_to='indications')
 
 	def __unicode__(self):
-		return self.from_module.name + u'-->' + self.to_module.name
+		return '(' + unicode(self.id) + ')' + self.from_module.name + u'-->' + self.to_module.name
 
 
 class RouteStep(models.Model):

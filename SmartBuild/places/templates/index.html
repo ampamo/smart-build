@@ -1,5 +1,14 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% block content %}
-	<p>aqui accesos directos</p>
+	<div class="shortcuts">
+		{% for module in modules %}
+			<div class="main-module">
+				<a href="{% url 'routestep_list' from_module_pk=from_module.pk from_slug=from_module.name|slugify to_module_pk=module.pk to_slug=module.name|slugify %}">
+					<img src="{{ module.image.url }}" alt="" />
+					<center><span class="module-name">{{module.name}}</span></center>
+				</a>
+			</div>
+		{% endfor %}
+	</div>
 {% endblock %}

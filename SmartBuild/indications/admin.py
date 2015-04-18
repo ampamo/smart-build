@@ -7,7 +7,7 @@ class IndicationTypeAdmin(admin.ModelAdmin):
 
 
 class IndicationAdmin(admin.ModelAdmin):
-	list_display = ('id', 'description', )
+	list_display = ('id', 'description', 'without_stairs', )
 
 
 class RouteAdmin(admin.ModelAdmin):
@@ -15,7 +15,7 @@ class RouteAdmin(admin.ModelAdmin):
 
 
 class RouteStepAdmin(admin.ModelAdmin):
-	list_display = ('id', 'route', 'indication', 'order', )
+	list_display = ('id', 'route', 'indication', 'order', 'route_id', )
 
 
 admin.site.register(IndicationType, IndicationTypeAdmin)

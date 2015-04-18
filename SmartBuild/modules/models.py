@@ -10,6 +10,10 @@ class Module(models.Model):
 	floor = models.ForeignKey(Floor, on_delete=models.PROTECT)
 	name  = models.CharField(max_length=50)
 
+	shortcut = models.BooleanField(default=False)
+
+	image    = models.ImageField(blank=True, upload_to='modules')
+
 	def get_absolute_indication_list_url(self, from_module):
 		return reverse('indication_list', kwargs={ 'from_module_pk' : from_module.pk, 'from_slug' : slugify(from_module.name), 'to_module_pk': self.pk, 'to_slug' : slugify(self.name) })
 

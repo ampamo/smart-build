@@ -1,12 +1,24 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load staticfiles %}
+{% block  extra_header %}
+	<a href="/"><img src="{% static 'image/casa_icono.png' %}" class="home-icon" alt="ULPGC"/></a>
+{% endblock %}
 {% block content %}
 	{% if modules %}
-		<p>Seleccione uno de los siguientes lugares:</p>
-		<ul>
-			{% for module in modules %}
-				<li><a href="{% url 'routestep_list' from_module_pk=from_module.pk from_slug=from_module.name|slugify to_module_pk=module.pk to_slug=module.name|slugify %}">{{module.name}}</a></li>
-			{% endfor %}
-		</ul>
+		<div class="module-list-title">EL RESULTADO DE SU BÚSQUEDA ES EL SIGUIENTE. SELECCIONA UNA OPCIÓN:</div>
+		<div class="table-responsive">
+			<table class="table table-striped table-bordered table-condensed module-list-table">
+				<tbody>
+					{% for module in modules %}
+						<tr><td>
+						<a href="{% url 'routestep_list' from_module_pk=from_module.pk from_slug=from_module.name|slugify to_module_pk=module.pk to_slug=module.name|slugify %}">{{module.name}}</a>
+						</td></tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	{% else %}
+		Lo sentimos pero no hemos encontrado un lugar relacionado con su búsqueda
 	{% endif %}
 {% endblock %}
